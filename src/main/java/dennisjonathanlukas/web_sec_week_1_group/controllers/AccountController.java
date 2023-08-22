@@ -5,10 +5,16 @@ import dennisjonathanlukas.web_sec_week_1_group.repositories.AccountRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 @RestController
 @RequestMapping("/account")
@@ -29,28 +35,19 @@ public class AccountController {
     private EntityManager entityManager;
 
     @RequestMapping("/{username}")
-    public List<Account> getPurchaseByIdInsecure(@PathVariable String username) {
+    public List<Account> InsecureGetPurchaseByUsername(@PathVariable String username) {
         String query = "SELECT * FROM account WHERE user_name = '" + username + "'";
         List<Account> users = entityManager.createNativeQuery(query, Account.class).getResultList();
 
         return users;
     }
 
-    @RequestMapping("/secure/{id}")
-    public Account getPurchaseById(@PathVariable Long id) {
-try {
-
-       Optional<Account> response = accountRepository.findById(id);
-
-
-}catch (Exception e){
-
-}
-
-        System.out.println("Fetching id: id");
-        return accountRepository.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("Purchase id: " + id + " not valid"));
+    @RequestMapping("/username/{username}")
+    public List<Account> secureGetPurchaseByUsername(@PathVariable String username) {
+        return accountRepository.findByUserName(username);
     }
+
+
 }
 // http://localhost:9050/account/pelle
 // http://localhost:9050/account/' OR '1'='1
