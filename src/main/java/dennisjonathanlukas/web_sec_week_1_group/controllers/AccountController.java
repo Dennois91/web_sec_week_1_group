@@ -6,7 +6,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/account")
@@ -36,6 +38,15 @@ public class AccountController {
 
     @RequestMapping("/secure/{id}")
     public Account getPurchaseById(@PathVariable Long id) {
+try {
+
+       Optional<Account> response = accountRepository.findById(id);
+
+
+}catch (Exception e){
+
+}
+
         System.out.println("Fetching id: id");
         return accountRepository.findById(id).orElseThrow(()
                 -> new EntityNotFoundException("Purchase id: " + id + " not valid"));
