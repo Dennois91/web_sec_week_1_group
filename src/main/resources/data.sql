@@ -5,3 +5,9 @@ CREATE TABLE account
     userPassword VARCHAR(20) NOT NULL,
     primary key (id)
 );
+INSERT INTO account
+VALUES (1, 'pelle', 'skrutte');
+INSERT INTO account
+VALUES (2, 'lelle', 'skrutte');
+INSERT INTO account
+VALUES (3, 'melle', 'skrutte')
