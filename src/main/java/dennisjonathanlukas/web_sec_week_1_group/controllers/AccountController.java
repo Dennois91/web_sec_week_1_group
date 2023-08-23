@@ -3,18 +3,11 @@ package dennisjonathanlukas.web_sec_week_1_group.controllers;
 import dennisjonathanlukas.web_sec_week_1_group.model.Account;
 import dennisjonathanlukas.web_sec_week_1_group.repositories.AccountRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sql.DataSource;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.zip.DataFormatException;
+
 
 @RestController
 @RequestMapping("/account")
