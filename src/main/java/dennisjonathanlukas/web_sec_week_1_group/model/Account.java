@@ -22,4 +22,5 @@ public class Account {
 
     @Column(name = "user_password")
     private String userPassword;
+
 }

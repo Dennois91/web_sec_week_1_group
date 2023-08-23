@@ -38,7 +38,6 @@ public class AccountController {
     public List<Account> InsecureGetPurchaseByUsername(@PathVariable String username) {
         String query = "SELECT * FROM account WHERE user_name = '" + username + "'";
         List<Account> users = entityManager.createNativeQuery(query, Account.class).getResultList();
-
         return users;
     }
 
@@ -46,6 +45,13 @@ public class AccountController {
     public List<Account> secureGetPurchaseByUsername(@PathVariable String username) {
         return accountRepository.findByUserName(username);
     }
+
+    @PutMapping("/update")
+    public Account updateUsernameAndPassword(@RequestBody Account account) {
+        return accountRepository.save(account);
+    }
+
+
 
 
 }
